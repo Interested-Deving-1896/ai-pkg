@@ -6,7 +6,7 @@ pkgdesc="AI-powered package recommender and installer for Arch Linux"
 arch=('x86_64')
 url="https://github.com/rohankrsingh/ai-pkg"
 license=('MIT')
-depends=('python' 'python-typer' 'python-requests' 'python-rich')
+depends=('python' 'python-textual' 'python-httpx' 'python-rich')
 makedepends=('python-build' 'python-installer' 'python-wheel' 'python-setuptools')
 provides=('ai-pkg')
 conflicts=('ai-pkg')
@@ -17,5 +17,4 @@ sha256sums=('REPLACE_ME')
 package() {
     cd "$srcdir"
     python -m installer --destdir="$pkgdir" ai-pkg-${pkgver}-py3-none-any.whl
-    pip install google-genai --break-system-packages
 }

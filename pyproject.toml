@@ -10,14 +10,14 @@ authors = [{ name = "Rohan Kumar Singh", email = "rohankrsingh125@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "typer",
-    "requests",
+    "textual>=0.52",
+    "httpx",
     "rich",
-    "google-genai"
+    "tomli ; python_version < '3.11'",
 ]
 
 [project.scripts]
-ai-pkg = "ai_pkg.cli:app"
+ai-pkg = "ai_pkg.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest", "flake8", "black", "setuptools_scm>=8"]

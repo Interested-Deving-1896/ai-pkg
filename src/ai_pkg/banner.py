@@ -7,24 +7,39 @@ from . import __version__
 
 console = Console()
 
+BANNER_ART = r"""
+ █████╗ ██╗      ██████╗ ██╗  ██╗ ██████╗ 
+██╔══██╗██║      ██╔══██╗██║ ██╔╝██╔════╝ 
+███████║██║█████╗██████╔╝█████╔╝ ██║  ███╗
+██╔══██║██║╚════╝██╔═══╝ ██╔═██╗ ██║   ██║
+██║  ██║██║      ██║     ██║  ██╗╚██████╔╝
+╚═╝  ╚═╝╚═╝      ╚═╝     ╚═╝  ╚═╝ ╚═════╝ 
+"""
+
 def show_banner():
-    """Compact, small banner that clearly shows 'ai-pkg' and usage hints."""
-    title = f"ai-pkg v{__version__}"
-
+    """Show the banner using a Gemini-inspired color scheme."""
     art = Text()
-    art.append("ai-pkg\n", style="bold magenta")
-    art.append("AI package recommender for Arch Linux\n", style="cyan")
-    art.append("\n")
-    art.append("Usage: ", style="bold yellow")
-    art.append('ai-pkg "setup django dev"', style="yellow")
-    art.append("\n")
-    art.append("Options: --dry-run (preview)  •  --yes (auto-confirm)\n", style="dim")
-
+    
+    # Gradient-like Gemini colors (cyan -> blue -> purple)
+    lines = BANNER_ART.splitlines()
+    colors = [
+        "#5DADE2",
+        "#4A90E2",
+        "#6C8CD5",
+        "#8E6CCF",
+        "#B565A7",
+    ]
+    
+    for i, line in enumerate(lines):
+        color = colors[i % len(colors)]
+        art.append(line + "\n", style=f"bold {color}")
+        
+    art.append("\nAI Package Wizard for Arch Linux\n", style="bold italic bright_black")
+    
     panel = Panel(
         Align.center(art),
-        title=f"[bold green]{title}[/bold green]",
-        border_style="bright_blue",
+        border_style="blue_violet",
         expand=False,
     )
-
+    
     console.print(panel)

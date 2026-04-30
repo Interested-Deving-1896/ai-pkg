@@ -1,56 +1,61 @@
-import subprocess
+"""Package installation logic (called by the progress screen)."""
+from __future__ import annotations
+
+# NOTE: In v2, actual installation is handled by the async ProgressScreen
+# which streams subprocess output directly to the TUI.
+# This module is kept for potential future CLI-only use or testing.
+
 import logging
-import typer
 import shutil
+import subprocess
 
 logger = logging.getLogger(__name__)
 
-def install_packages(pkgs, dry_run=False, auto_yes=False, aur_helper="yay"):
+
+def install_packages(
+    pkgs: list[str],
+    dry_run: bool = False,
+    auto_yes: bool = False,
+    aur_helper: str = "yay",
+) -> bool:
+    """Synchronously install packages (used outside the TUI context).
+
+    Returns True on success, False on failure.
+    """
     if not pkgs:
-        typer.secho("⚠️ No packages suggested", fg=typer.colors.YELLOW)
-        return
+        logger.warning("No packages to install")
+        return True
 
-    # Split official pacman packages and AUR packages prefixed with 'aur:'
-    pacman_pkgs = [p for p in pkgs if not str(p).startswith("aur:")]
-    aur_pkgs = [str(p)[4:] for p in pkgs if str(p).startswith("aur:")]
+    pacman_pkgs = [p for p in pkgs if not p.startswith("aur:")]
+    aur_pkgs = [p[4:] for p in pkgs if p.startswith("aur:")]
 
-    # Install official packages with pacman --needed
     if pacman_pkgs:
-        pacman_cmd = ["sudo", "pacman", "-S", "--needed"]
+        cmd = ["sudo", "pacman", "-S", "--needed"]
         if auto_yes:
-            pacman_cmd.append("--noconfirm")
-        pacman_cmd.extend(pacman_pkgs)
-
+            cmd.append("--noconfirm")
+        cmd.extend(pacman_pkgs)
         if dry_run:
-            typer.secho(f"[DRY RUN] Would run: {' '.join(pacman_cmd)}", fg=typer.colors.MAGENTA)
+            print(f"[DRY RUN] {' '.join(cmd)}")
         else:
-            try:
-                subprocess.run(pacman_cmd, check=True)
-            except subprocess.CalledProcessError as e:
-                typer.secho(f"❌ pacman failed (exit {e.returncode}). See output above.", fg=typer.colors.RED)
-                logger.exception('pacman command failed')
-                return
+            result = subprocess.run(cmd)
+            if result.returncode != 0:
+                logger.error("pacman failed with exit %d", result.returncode)
+                return False
 
-    # Install AUR packages using yay or paru
     if aur_pkgs:
-        if aur_helper not in ("yay", "paru"):
-            typer.secho(f"❌ Invalid aur_helper: {aur_helper}. Must be 'yay' or 'paru'", fg=typer.colors.RED)
-            return
-        helper_path = shutil.which(aur_helper)
-        if not helper_path:
-            typer.secho(f"⚠️ '{aur_helper}' not found in PATH. Skipping AUR packages: " + ", ".join(aur_pkgs), fg=typer.colors.YELLOW)
+        if not shutil.which(aur_helper):
+            logger.warning("'%s' not found — skipping AUR packages", aur_helper)
         else:
-            aur_cmd = [aur_helper, "-S", "--needed"]
+            cmd = [aur_helper, "-S", "--needed"]
             if auto_yes:
-                aur_cmd.append("--noconfirm")
-            aur_cmd.extend(aur_pkgs)
-
+                cmd.append("--noconfirm")
+            cmd.extend(aur_pkgs)
             if dry_run:
-                typer.secho(f"[DRY RUN] Would run: {' '.join(aur_cmd)}", fg=typer.colors.MAGENTA)
+                print(f"[DRY RUN] {' '.join(cmd)}")
             else:
-                try:
-                    subprocess.run(aur_cmd, check=True)
-                except subprocess.CalledProcessError as e:
-                    typer.secho(f"❌ {aur_helper} failed (exit {e.returncode}). See output above.", fg=typer.colors.RED)
-                    logger.exception(f'{aur_helper} command failed')
-                    return
+                result = subprocess.run(cmd)
+                if result.returncode != 0:
+                    logger.error("%s failed with exit %d", aur_helper, result.returncode)
+                    return False
+
+    return True

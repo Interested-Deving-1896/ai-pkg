@@ -67,4 +67,4 @@ fi
 
 echo ""
 echo "🎉 Installation complete!"
-echo "Try it now:  ai-pkg \"set up a django dev env\" --dry-run"
+echo "Try it now by running:  ai-pkg"

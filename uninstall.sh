@@ -29,4 +29,15 @@ if python3 -m pip show ai-pkg &>/dev/null; then
     python3 -m pip uninstall -y ai-pkg || true
 fi
 
-echo "✅ Uninstall complete. If you set GEMINI_API_KEY in your shell profile, you may want to remove it manually."
+# Try local venv removal
+if [ -d "$HOME/.local/ai-pkg" ]; then
+    echo "Removing local venv at ~/.local/ai-pkg..."
+    rm -rf "$HOME/.local/ai-pkg" || true
+fi
+
+if [ -f "$HOME/.local/bin/ai-pkg" ]; then
+    echo "Removing shim at ~/.local/bin/ai-pkg..."
+    rm -f "$HOME/.local/bin/ai-pkg" || true
+fi
+
+echo "✅ Uninstall complete."

@@ -1,0 +1,310 @@
+/* ── Global ──────────────────────────────────────────────────────────────── */
+Screen {
+    background: #000000;
+    layout: vertical;
+}
+
+/* ── Chat scroll ─────────────────────────────────────────────────────────── */
+#chat-scroll {
+    height: 1fr;
+    background: transparent;
+    padding: 1 2;
+    border: none;
+    color: #cdd6f4;
+}
+
+/* ── Chat input ──────────────────────────────────────────────────────────── */
+#input-container {
+    height: auto;
+    border: round #313244;
+    margin: 0 1 0 1;
+    background: #09090b;
+}
+
+#input-container:focus-within {
+    border: round #89b4fa;
+}
+
+#input-container Input {
+    border: none;
+    background: transparent;
+    padding: 0 1;
+    color: #cdd6f4;
+}
+
+#input-container Input:focus {
+    border: none;
+}
+
+/* ── Status / Footer bar ─────────────────────────────────────────────────── */
+#status-bar {
+    dock: bottom;
+    height: auto;
+    background: #09090b;
+    color: #6c7086;
+    padding: 0 1;
+    layout: horizontal;
+    border-top: solid #181825;
+}
+
+#status-left {
+    width: auto;
+    max-width: 30%;
+    content-align: left middle;
+    color: #45475a;
+}
+
+#footer-hints {
+    width: 1fr;
+    content-align: center middle;
+}
+
+#status-right {
+    width: auto;
+    max-width: 30%;
+    content-align: right middle;
+    color: #cba6f7;
+}
+
+/* ── PlanWidget ──────────────────────────────────────────────────────────── */
+PlanWidget {
+    border: round #313244;
+    background: #09090b;
+    padding: 1 2;
+    margin: 1 0;
+    height: auto;
+}
+
+PlanWidget:focus-within {
+    border: round #cba6f7;
+}
+
+.plan-header {
+    height: 1;
+    layout: horizontal;
+    margin-bottom: 1;
+}
+
+.plan-title {
+    width: 1fr;
+}
+
+.sel-counter {
+    width: auto;
+    content-align: right middle;
+}
+
+.plan-hint {
+    height: 1;
+    margin-bottom: 1;
+}
+
+/* ── Package toggles ─────────────────────────────────────────────────────── */
+.pkg-toggle {
+    height: 1;
+    width: 100%;
+    padding: 0 1;
+}
+
+.pkg-toggle:hover {
+    background: #181825;
+}
+
+.pkg-toggle:focus {
+    background: #1e1e2e;
+}
+
+/* ── Section separator ───────────────────────────────────────────────────── */
+.section-sep {
+    height: 1;
+    margin-top: 1;
+    color: #45475a;
+}
+
+/* ── Command inputs ──────────────────────────────────────────────────────── */
+.cmd-row {
+    height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.cmd-dollar {
+    width: 3;
+    color: #6c7086;
+    padding: 0;
+}
+
+.cmd-input {
+    height: 1;
+    border: none;
+    background: transparent;
+    color: #cdd6f4;
+    padding: 0;
+    width: 1fr;
+}
+
+.cmd-input:focus {
+    border: none;
+    background: #1e1e2e;
+}
+
+/* ── Spacer ──────────────────────────────────────────────────────────────── */
+.spacer {
+    height: 1;
+}
+
+/* ── Plan buttons ────────────────────────────────────────────────────────── */
+.buttons {
+    layout: horizontal;
+    height: auto;
+    align: right middle;
+}
+
+PlanWidget Button {
+    margin-left: 1;
+    border: none;
+    min-width: 12;
+    height: 1;
+    padding: 0 2;
+}
+
+PlanWidget Button#cancel-btn {
+    background: #181825;
+    color: #a6adc8;
+}
+
+PlanWidget Button#cancel-btn:hover {
+    background: #313244;
+    color: #cdd6f4;
+}
+
+PlanWidget Button#cancel-btn:focus {
+    background: #313244;
+    color: #cdd6f4;
+}
+
+PlanWidget Button#run-btn {
+    background: #1e1e2e;
+    color: #a6e3a1;
+}
+
+PlanWidget Button#run-btn:hover {
+    background: #a6e3a1;
+    color: #11111b;
+}
+
+PlanWidget Button#run-btn:focus {
+    background: #a6e3a1;
+    color: #11111b;
+}
+
+/* ── Execution log ───────────────────────────────────────────────────────── */
+RichLog {
+    background: transparent;
+    height: auto;
+    max-height: 20;
+    margin: 1 0;
+}
+
+/* ── Settings modal ──────────────────────────────────────────────────────── */
+SettingsModal {
+    align: center middle;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#settings-dialog {
+    width: 60;
+    height: auto;
+    border: round #313244;
+    background: #11111b;
+    padding: 1 2;
+}
+
+#settings-title {
+    width: 100%;
+    content-align: center middle;
+    text-style: bold;
+    color: #cba6f7;
+    margin-bottom: 1;
+}
+
+.settings-label {
+    margin-top: 1;
+    color: #a6adc8;
+}
+
+#settings-dialog Input, #settings-dialog Select {
+    margin-top: 1;
+}
+
+#settings-dialog Input {
+    height: 3;
+    background: #181825;
+    color: #cdd6f4;
+    padding: 0 1;
+    border: round #313244;
+}
+
+#settings-dialog Select {
+    height: auto;
+    background: #181825;
+    border: round #313244;
+    color: #cdd6f4;
+}
+
+#settings-dialog Select:focus {
+    border: round #89b4fa;
+}
+
+#settings-dialog Input:focus {
+    border: round #89b4fa;
+    background: #1e1e2e;
+}
+
+#settings-buttons {
+    margin-top: 2;
+    height: auto;
+    align: right middle;
+}
+
+#settings-buttons Button {
+    margin-left: 1;
+    border: none;
+    height: 1;
+    padding: 0 2;
+    min-width: 12;
+}
+
+#settings-buttons Button#cancel-btn {
+    background: #181825;
+    color: #a6adc8;
+}
+
+#settings-buttons Button#cancel-btn:hover {
+    background: #313244;
+    color: #cdd6f4;
+}
+
+#settings-buttons Button#save-btn {
+    background: #1e1e2e;
+    color: #a6e3a1;
+}
+
+#settings-buttons Button#save-btn:hover {
+    background: #a6e3a1;
+    color: #11111b;
+}
+
+.centered-panel {
+    width: auto;
+}
+
+/* ── Scrollbars ──────────────────────────────────────────────────────────── */
+* {
+    scrollbar-background: transparent;
+    scrollbar-background-hover: transparent;
+    scrollbar-background-active: transparent;
+    scrollbar-color: #313244;
+    scrollbar-color-hover: #45475a;
+    scrollbar-color-active: #585b70;
+}
