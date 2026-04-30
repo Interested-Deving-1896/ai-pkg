@@ -98,7 +98,7 @@ jobs:
       # 8️⃣ Publish to AUR
       # ------------------------
       - name: Publish to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v4
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.3
         with:
           pkgname: ai-pkg-bin
           pkgbuild: ./PKGBUILD
