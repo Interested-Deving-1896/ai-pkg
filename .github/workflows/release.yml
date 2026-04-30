@@ -9,6 +9,7 @@ on:
 
 env:
   PKG_NAME: ai-pkg-bin
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-publish:
@@ -97,7 +98,7 @@ jobs:
       # 8️⃣ Publish to AUR
       # ------------------------
       - name: Publish to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        uses: KSXGitHub/github-actions-deploy-aur@v4
         with:
           pkgname: ai-pkg-bin
           pkgbuild: ./PKGBUILD

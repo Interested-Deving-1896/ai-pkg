@@ -19,7 +19,7 @@
   <a href="#-roadmap">Roadmap</a>
 </p>
 
----
+
 
 ## 🚀 Overview
 
@@ -33,7 +33,7 @@ With one command, **ai-pkg** identifies the necessary Arch/AUR packages, scripts
 |:---:|:---:|
 | <img src="./.github/assets/landing.png" width="400" /> | <img src="./.github/assets/action.png" width="400" /> |
 
----
+
 
 ## 🧭 Table of Contents
 
@@ -46,7 +46,7 @@ With one command, **ai-pkg** identifies the necessary Arch/AUR packages, scripts
 - [Roadmap](#-roadmap)
 - [License](#-license)
 
----
+
 
 ## ✨ Key Features
 
@@ -62,7 +62,7 @@ Swap backends on the fly. Whether you prefer the reasoning of **GPT-4o**, the sp
 
 The built-in **AI Filtering System** is unique: if you deselect a package from the proposed plan, the AI automatically scans the remaining shell commands and strips away any logic that depended on the removed package. No more broken environment scripts!
 
----
+
 
 ## 🧠 How it Works
 
@@ -78,7 +78,7 @@ graph TD
     G --> H[Ready-to-Code Env]
 ```
 
----
+
 
 ## 📦 Installation
 
@@ -100,7 +100,7 @@ cd ai-pkg
 ./install.sh
 ```
 
----
+
 
 ## 🛠️ Getting Started
 
@@ -121,7 +121,7 @@ ai-pkg
 | `Esc` | **Cancel**: Return to chat or exit current view |
 | `Ctrl+C` | **Quit**: Safe exit |
 
----
+
 
 ## ⚙️ Configuration
 
@@ -138,7 +138,7 @@ groq_api_key = "..."
 # ... other provider settings
 ```
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -148,7 +148,7 @@ groq_api_key = "..."
 - **HTTP Client**: [HTTPX](https://www.python-httpx.org/)
 - **Serialization**: [TOMLi](https://github.com/hukkin/tomli)
 
----
+
 
 ## 🗺️ Roadmap
 
@@ -157,7 +157,7 @@ groq_api_key = "..."
 - [ ] **Plugin System**: Support custom post-install scripts and hooks.
 - [ ] **GUI Wrapper**: A lightweight Electron/Desktop wrapper for non-terminal enthusiasts.
 
----
+
 
 ## 🔄 Updates & Maintenance
 
@@ -173,7 +173,7 @@ To remove the application and its local environments:
 ./uninstall.sh
 ```
 
----
+
 
 <details>
 <summary><b>📜 Previous CLI Version Documentation (v1)</b></summary>
@@ -261,7 +261,7 @@ Environment variables:
 
 </details>
 
----
+
 
 ## 📝 License
 
